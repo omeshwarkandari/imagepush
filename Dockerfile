@@ -1,5 +1,4 @@
-FROM openjdk:8-jdk-alpine
-EXPOSE 8080
-VOLUME /tmp
-COPY ./petclinic/target/*.jar petclinic.jar
-CMD ["java","-jar","petclinic.jar"]   
+FROM openjdk:11
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} petclinic.jar
+ENTRYPOINT ["java","-jar","/petclinic.jar"]
