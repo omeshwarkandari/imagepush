@@ -1,8 +1,18 @@
 # https://spring.io/guides/topicals/spring-boot-docker
-FROM openjdk:11
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} petclinic.jar
-ENTRYPOINT ["java","-jar","/petclinic.jar"]
+<artifactId>spring-petclinic</artifactId>
+  <version>2.2.0.BUILD-SNAPSHOT</version>
+  <artifactId>spring-boot-docker</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+ARG JAR_FILE=target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar
+
+# Add the application's jar to the container
+ADD ${JAR_FILE} spring-petclinic-docker.jar
+
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE=target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar
+COPY ${JAR_FILE} spring-petclinic-docker.jar
+ENTRYPOINT ["java","-jar","/spring-petclinic.jar"]
 
 FROM openjdk:11
 WORKDIR /opt/petclinic
