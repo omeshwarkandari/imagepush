@@ -1,5 +1,4 @@
-FROM openjdk:11
-WORKDIR /opt/petclinic
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} /opt/petclinic/petclinic.jar
-ENTRYPOINT ["java","-jar","/petclinic.jar"]
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE=target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar
+COPY ${JAR_FILE} spring-petclinic.jar
+ENTRYPOINT ["java","-jar","/spring-petclinic.jar"]
